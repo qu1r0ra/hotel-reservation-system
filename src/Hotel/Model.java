@@ -480,7 +480,6 @@ public class Model {
         return new Result(ER_SUCCESSFUL);
     }
 
-    // TODO: DONE! (remove)
     /**
      * Adds a new hotel with the specified name.
      * 
@@ -495,6 +494,18 @@ public class Model {
         return new Result(ER_SUCCESSFUL);
     }
 
+    // TODO: Challenge code.
+    public Result addPrebuiltHotel(String name) {
+
+        if (doesHotelExist(name)) {
+            return new Result(ER_HOTEL_EXISTS);
+        }
+
+        Hotel newHotel = new Hotel(name, true); // TODO: Hotel with presets.
+
+        this.hotelList.add(newHotel);
+        return new Result(ER_SUCCESSFUL);
+    }
     /**
      * Adds a new hotel with the specified name.
      *
@@ -510,7 +521,7 @@ public class Model {
             return new Result(ER_INVALID_PRICE_RATE);
         }
 
-        Hotel newHotel = new Hotel(name);
+        Hotel newHotel = new Hotel(name, false);
         newHotel.setBasePrice(price);
 
         this.hotelList.add(newHotel);

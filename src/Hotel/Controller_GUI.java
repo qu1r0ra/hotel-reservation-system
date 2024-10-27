@@ -104,6 +104,9 @@ public class Controller_GUI implements ActionListener {
             case "Create Hotel Instance":
                 guiCreateHotel();
                 break;
+            case "Create Prebuilt Hotel Instance":
+                guiCreatePrebuiltHotel();
+                break;
         }
 
         // View Panel
@@ -445,7 +448,7 @@ public class Controller_GUI implements ActionListener {
         if (hasExistingName){
             createHotel.setContentInfo("Please insert a valid hotel name.");
             return;
-        } 
+        }
 
         String strPriceFieldText = view.getPanelCreateHotel().getPriceField().getText();
         Double hotelBasePrice = 0.0;
@@ -474,6 +477,36 @@ public class Controller_GUI implements ActionListener {
             return;
         }
         
+        createHotel.setContentInfo("Error: " + hotelResult.getMessage());
+    }
+
+    // TODO: Challenge code!!
+    /**
+     * Creates a new prebuilt hotel via the GUI.
+     */
+    private void guiCreatePrebuiltHotel() {
+
+        PanelCreateHotel createPrebuiltHotel = view.getPanelCreateHotel();
+
+        PanelCreateHotel createHotel = view.getPanelCreateHotel();
+        String strHotelNameField = createHotel.getNameField().getText();
+        Hotel hotel = model.getHotelClone(strHotelNameField);
+
+        boolean hasExistingName = !doesHotelCloneNotExist(hotel) || isStringTrimmedEmpty(strHotelNameField);
+        if (hasExistingName){
+            createHotel.setContentInfo("Please insert a valid hotel name.");
+            return;
+        }
+
+        Result hotelResult = model.addPrebuiltHotel(strHotelNameField);
+        if (hotelResult.isSuccesful()){
+            createHotel.setContentInfo("Hotel succesfully created.");
+            createHotel.getNameField().setText("");
+            createHotel.getPriceField().setText("");
+            guiUpdateHotelSelection();
+            return;
+        }
+
         createHotel.setContentInfo("Error: " + hotelResult.getMessage());
     }
 

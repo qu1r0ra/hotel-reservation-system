@@ -680,7 +680,7 @@ public class Controller_Console {
         Boolean isPerformingManagingHotel = true, isEnteringHotel = true, isManaging = true, hasDelete = false;
         MANAGER_STATE CurrentState = MS_OVERVIEW;
 
-        Hotel newHotel = new Hotel("");
+        Hotel newHotel = new Hotel("", false);
 
         while (isManaging){
             isEnteringHotel = true;
@@ -822,7 +822,7 @@ public class Controller_Console {
         /* TODO: Prompt the user to select the room type via GUI. */
         Room room = new StandardRoom(""); /* placeholder */
         ArrayList<Room> listOfAvailableRooms = new ArrayList<Room>();
-        Hotel validHotel = new Hotel("");
+        Hotel validHotel = new Hotel("", false);
 
         ArrayList<LocalDate> arrayLocalDatesCheckInCheckOut = new ArrayList<LocalDate>();
 

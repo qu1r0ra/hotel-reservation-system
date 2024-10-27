@@ -15,6 +15,7 @@ import Hotel.HotelGUI.PANEL_NAME;
 
 public class PanelCreateHotel extends HotelPanel {
     private JButton createButton;
+    private JButton createPrebuiltButton; // TODO: Challenge code.
     private JTextField nameField;
     private JTextField priceField;
     private final String defaultHotelInfoText = "Register name of hotel and its price per night";
@@ -88,6 +89,11 @@ public class PanelCreateHotel extends HotelPanel {
         JButton createButton = compFactory.createSingleJButton(this.jButtonList, "Create Hotel Instance", 200, 50);
         this.createButton = createButton;
 
+        // TODO: Challenge code.
+        JButton createPrebuiltButton = compFactory.createSingleJButton(this.jButtonList, "Create Prebuilt Hotel Instance", 200, 50);
+        this.createPrebuiltButton = createPrebuiltButton;
+        // TODO: Challenge code.
+
         director.setBuilder(ComponentBuilderState.LAY_GRID);
         CompBuilderGridLayout gridLayout = (CompBuilderGridLayout) director.getBuilder();
         JPanel inputPanel = initPricePanel(gridLayout, compFactory);
@@ -105,6 +111,7 @@ public class PanelCreateHotel extends HotelPanel {
         boxBuildVert.setChild(hotelInfo);
         boxBuildVert.setChild(inputPanel);
         boxBuildVert.setChild(createButton);
+        boxBuildVert.setChild(createPrebuiltButton);
         boxBuildVert.setChild(this.confirmationPanel);
         
         return contentPanel;
@@ -112,6 +119,7 @@ public class PanelCreateHotel extends HotelPanel {
 
     public void setActionListener(ActionListener listener){
         createButton.addActionListener(listener);
+        createPrebuiltButton.addActionListener(listener); // TODO: Challenge code.
         hotelSelectionPanel.setActionListener(listener);
         confirmationPanel.setActionListener(listener);
     }

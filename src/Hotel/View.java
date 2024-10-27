@@ -401,7 +401,7 @@ public class View {
                 assert room != null;
                 System.out.println("Room: " + room.getName());
                 System.out.println("Class: " + room.getClass());
-                System.out.println("Base Price: ₱" + (basePricePerNight * multiplier));
+                System.out.printf("Base Price: ₱%.2f", (basePricePerNight * multiplier));
                 ++i;
             }
         }
@@ -420,7 +420,7 @@ public class View {
         displayDivider();
         System.out.println("\nHotel name: " + hotel.getName());
         System.out.println("Total number of rooms: " + hotel.getTotalRooms());
-        System.out.println("Estimated earnings: " + estimatedEarnings);
+        System.out.printf("Estimated earnings: %.2f", estimatedEarnings);
     }
 
 

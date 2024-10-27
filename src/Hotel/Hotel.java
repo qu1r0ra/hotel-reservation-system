@@ -18,6 +18,12 @@ public class Hotel {
     public static final int MAX_ROOMS = 50;
     private static final int DAYS_IN_MONTH = 31;
 
+    // TODO: Challenge code.
+    private final int PREBUILT_STANDARD_ROOMS = 25;
+    private final int PREBUILT_DELUXE_ROOMS = 15;
+    private final int PREBUILT_EXECUTIVE_ROOMS = 10;
+    // TODO: Challenge code.
+
     private String name;
     private ArrayList<Room> roomList;
     private ArrayList<Reservation> reservationList;
@@ -28,7 +34,6 @@ public class Hotel {
     private double deluxeMultiplier = 1.2;
     private double executiveMultiplier = 1.35;
 
-
     /**
      * Constructs a Hotel object with a given name.
      * Initializes roomList and reservationList.
@@ -36,13 +41,20 @@ public class Hotel {
      * 
      * @param name the name of the hotel
      */
-    public Hotel(String name) {
+    public Hotel(String name, boolean isPrebuilt) {
         this.name = name;
         this.roomList = new ArrayList<Room>();
         this.reservationList = new ArrayList<Reservation>();
         this.priceRateList = new double[DAYS_IN_MONTH];
-        this.initRooms();
         this.initPriceRates();
+
+        // TODO: Challenge code.
+        if (!isPrebuilt) {
+            initRooms();
+        } else { // prebuilt hotel
+            initPrebuiltRooms();
+            setBasePrice(2499.00);
+        }
     }
 
     public Hotel(Hotel hotel) {
@@ -61,7 +73,6 @@ public class Hotel {
 
     // ### HELPERS
 
-    // TODO: DONE! (remove)
     /**
      * Initializes the price rates of rooms in the hotel.
      * Price rates are set to a default of 1.0.
@@ -72,7 +83,6 @@ public class Hotel {
         }
     }
 
-    // TODO: DONE! (remove)
     /**
      * Initializes rooms in the hotel.
      * Rooms are named from 'A0' to 'E9'.
@@ -95,7 +105,42 @@ public class Hotel {
         }
     }
 
-    // TODO: DONE! (remove)
+    // TODO: Challenge code.
+    /**
+     * Initializes rooms of a prebuilt hotel.
+     * Rooms are named from 'A0' to 'E9'.
+     * 25 standard rooms
+     * 15 deluxe rooms
+     * 10 executive rooms
+     */
+    private void initPrebuiltRooms() {
+
+        String roomName;
+        Room newRoom;
+        int number;
+
+        /* Standard Rooms */
+        for (number = 1; number <= PREBUILT_STANDARD_ROOMS; ++number) {
+            roomName = "" + 'S' + number;
+            newRoom = new StandardRoom(roomName);
+            this.roomList.add(newRoom);
+        }
+
+        /* Deluxe Rooms */
+        for (number = 1; number <= PREBUILT_DELUXE_ROOMS; ++number) {
+            roomName = "" + 'D' + number;
+            newRoom = new DeluxeRoom(roomName);
+            this.roomList.add(newRoom);
+        }
+
+        /* Executive Rooms */
+        for (number = 1; number <= PREBUILT_EXECUTIVE_ROOMS; ++number) {
+            roomName = "" + 'E' + number;
+            newRoom = new ExecutiveRoom(roomName);
+            this.roomList.add(newRoom);
+        }
+    }
+
     /**
      * Creates a copy of a room instance.
      *
